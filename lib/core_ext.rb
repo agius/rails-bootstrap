@@ -27,3 +27,9 @@ class String
     self.dup.slice!(sep.length, length - 1) if length > sep.length && starts_with?(sep)
   end
 end
+
+module Rails
+  def self.load_conf(file)
+    YAML.load(File.read(Rails.root.join("config", file)))[Rails.env].with_indifferent_access
+  end
+end
