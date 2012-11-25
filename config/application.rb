@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require File.join(File.dirname(__FILE__), "../", "lib", "core_ext.rb")
+require File.join(File.dirname(__FILE__), "../", "lib", "asset_finder.rb")
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

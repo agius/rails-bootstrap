@@ -35,7 +35,7 @@ module AssetFinder
     
     def css_files(dir, excludes = [])
       css = []
-      Dir.chdir(Rails.root.join("app", "assets", "stylesheets")) do
+      Dir.chdir(dir) do
         css += Dir.glob(File.join("**", "*.css*")) - ['application.css'] - excludes
         css.collect! do |f| 
           split_f = f.split('.')
