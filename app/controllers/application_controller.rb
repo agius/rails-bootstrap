@@ -15,10 +15,7 @@ class ApplicationController < ActionController::Base
     @exception = exception
     @not_found_path = exception.message
     render nothing: true, status: 404 and return false if request.xhr?
-    respond_to do |format|
-      format.html { render template: 'errors/error_404', layout: 'layouts/application', status: 404 }
-      format.all { render nothing: true, status: 404 }
-    end
+    render template: 'errors/error_404', layout: 'layouts/application', status: 404
   end
 
   def render_500(exception)
@@ -26,10 +23,7 @@ class ApplicationController < ActionController::Base
     @exception = exception
     @error = exception
     render nothing: true, status: 500 and return false if request.xhr?
-    respond_to do |format|
-      format.html { render template: 'errors/error_500', layout: 'layouts/application', status: 500 }
-      format.all { render nothing: true, status: 500}
-    end
+    render template: 'errors/error_500', layout: 'layouts/application', status: 500
   end
   
   def log_error(e)
