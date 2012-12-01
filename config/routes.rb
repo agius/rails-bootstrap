@@ -3,7 +3,7 @@ RailsBootstrap::Application.routes.draw do
   devise_scope :user do
     get 'login', to: "devise/sessions#new", as: "login"
     get 'logout', to: "devise/sessions#destroy", as: "logout"
-    get 'signup', to: "users/registrations#new", as: "signup"
+    get 'signup', to: "users#new", as: "signup"
   end
   root :to => 'high_voltage/pages#show', :id => 'home'
   
