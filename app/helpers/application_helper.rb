@@ -28,6 +28,32 @@ module ApplicationHelper
     will_paginate(pages, options)
   end
   
+  def gridify(collection, partial, opts = {})
+    rows = []
+    coll_copy = collection.dup
+    cols = opts[:cols] || 3
+    begin
+      row = []
+      cols.times { row << coll_copy.shift }
+      row.compact!
+      rows << row
+    end while coll_copy.present?
+    
+    width = opts[:col_width] || 3
+    output = ""
+    rows.each do |row|
+      output = "<div class='row-fluid'>\n"
+      row.each do |col|
+        output << "<div class='span#{width}'>\n"
+        output << render({partial: partial, object: col}.merge(opts))
+        output << "\n</div>"
+      end
+      output << "\n</div>"
+    end
+    
+    output.html_safe
+  end
+  
   # improved version of https://gist.github.com/1160287
   def wrap(str, opts = {})
     opts = opts.with_indifferent_access
