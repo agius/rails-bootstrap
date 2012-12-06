@@ -18,6 +18,10 @@ module ApplicationHelper
     html.html_safe
   end
   
+  def asset_url(source)
+    URI.join(root_url, asset_path(source))
+  end
+  
   def bootstrap_paginate(pages, options={})
     options.reverse_merge!(
       :class => 'pagination', 
