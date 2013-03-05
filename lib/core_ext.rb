@@ -56,3 +56,10 @@ module Rails
     YAML.load(File.read(Rails.root.join("config", file)))[Rails.env].with_indifferent_access
   end
 end
+
+# from http://blog.hulihanapplications.com/browse/view/50-mysql-datetime-and-rails
+class Time  
+  def to_mysql # add custom time formatting  
+   self.strftime("%Y-%m-%d %H:%M:%S")  
+  end  
+end
