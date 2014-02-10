@@ -40,8 +40,12 @@ class String
     self.gsub(/\W/, '-').gsub(/-+/, '-')
   end
   
-  def lchomp(sep = "/")
-    self.dup.slice!(sep.length, length - 1) if length > sep.length && starts_with?(sep)
+  def lchomp(sep = $/)
+    rchomp(sep)
+  end
+
+  def rchomp(sep = $/)
+    self.start_with?(sep) ? self[sep.size..-1] : self
   end
   
   def to_bool
